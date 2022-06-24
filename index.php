@@ -1,11 +1,14 @@
+
 <?php
 session_start();
 //in DB, collectors table, handelingen, daar staan de users die toegang hebben tot de database met de bijbehorende servernaam en username.
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$databasename = "buke";
+Include 'env.php';
+
+$servername = $DB_HOST;
+$username = $DB_USER;
+$password = $DB_PASSWORD;
+$databasename = $DB_NAAM;
 $message = "";
 
 try {
