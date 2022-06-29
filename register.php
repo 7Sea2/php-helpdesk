@@ -21,21 +21,21 @@ try {
 
     var_dump($_POST);
 
-        if(empty($_POST["name"]) || empty($_POST["surname"]) || empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["email"]))
+        if(empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["email"]) || empty($_POST["tel1"]))
         {
             $message = '<label>All fields are required</label>';
         }
         else
         {
-            $query = "INSERT INTO collectors (Name, Surname, Username, Password, Email) 
-            VALUES (:name, :surname, :username, :password, :email )";
+            $query = "INSERT INTO users (naam, wachtwoord, email, telnr, alt_telnr) 
+            VALUES (:username, :password, :email, :tel1, :tel2)";
             $statement = $conn->prepare($query);
 
-            $statement->bindParam(':name', $name);
-            $statement->bindParam(':surname', $surname);
             $statement->bindParam(':username', $username);
             $statement->bindParam(':password', $password);
             $statement->bindParam(':email', $email);
+            $statement->bindParam(':tel1', $tel1);
+            $statement->bindParam(':tel2', $tel2);
 
             // $statement->bindParam(":name", $param_name, PDO::PARAM_STR);
             // $statement->bindParam(":surname", $param_surname, PDO::PARAM_STR);
@@ -44,11 +44,11 @@ try {
             // $statement->bindParam(":email", $param_email, PDO::PARAM_STR);
 
 
-            $name      =      $_POST["name"];
-            $surname      =      $_POST["surname"];
             $username      =      $_POST["username"];
             $password      =      password_hash($_POST["password"], PASSWORD_DEFAULT);
             $email      =      $_POST["email"];
+            $tel1   =   $_POST["tel1"];
+            $tel2   =   $_POST['tel2'];
 
             // $param_username = $username;
             // $param_password = password_hash($password, PASSWORD_DEFAULT);
@@ -58,7 +58,7 @@ try {
             $count = $statement->rowCount();
             if($count > 0)
             {
-                $_SESSION["username"] = $_POST["username"];
+                $_SESSION["email"] = $_POST["email"];
                 header("location:inlog.php");
             }
             else
@@ -147,13 +147,7 @@ try {
                 }  
                 ?>  
                 <h3 >Create your CollectionHub account</h3><br />  
-                <form action=""  method="POST">  
-                     <label>Name</label>  
-                     <input type="text" name="name" class="form-control" />  
-                     <br />  
-                     <label>Surname</label>  
-                     <input type="text" name="surname" class="form-control" />  
-                     <br />  
+                <form action=""  method="POST">
                      <label>Username</label>  
                      <input type="text" name="username" class="form-control" />  
                      <br />  
@@ -163,6 +157,12 @@ try {
                      <label>Email</label>  
                      <input type="email" name="email" class="form-control" />  
                      <br />  
+                     <label>Telefoon nummer</label>  
+                     <input type="tel" name="tel1" class="form-control" />  
+                     <br /> 
+                     <label>Alternatief Telefoon nummer</label>  
+                     <input type="tel" name="tel2" class="form-control" />  
+                     <br /> 
                      <input type="submit" name="register" class="btn btn-info" value="Sign Up" />  
                 </form>  
            </div>
