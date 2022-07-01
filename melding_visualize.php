@@ -37,15 +37,18 @@
                 <div>
                   <table class = "table">
                   <tr>
-                          <td> Titel <br> </td> 
-                          <td> Melding ID<br> </td>
-                          <td> Status <br> </td>
+                          <td>Titel<br> </td> 
+                          <td>Melding ID<br> </td>
+                          <td>Status<br> </td>
+                          <td>Prioriteit <br> </td>
                           <td>Datum <br> </td>
                           </tr>
                   
                   <?php
-                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum FROM meldingen";
+                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
                         $sql2 = "SELECT statusID, status FROM status";
+                        $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        $result3 = $conn->query($sql3);
                         $result2 = $conn->query($sql2);
                         $result = $conn->query($sql1);
                         
@@ -55,6 +58,7 @@
                           echo "<td>" .$row["beschr_kort"]."<br> </td>"; 
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td>" .$row["statusID"]."<br> </td>";
+                          echo "<td>" .$row["prioID"]."<br> </td>";                          
                           echo "<td>" .$row["datum"]."<br> </td>";
                           echo "</tr>";
                             
