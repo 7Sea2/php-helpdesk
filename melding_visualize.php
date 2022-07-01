@@ -25,9 +25,9 @@
         <div class="sidebar">
             <h2>[user-name]</h2>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i>Thuispagina</a></li>
-                <li><a href="#"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
-                <li><a href="#"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <li><a href="helpdesk-dashboard/dashboard.html"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
+                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
             </ul>
 
         </div>
