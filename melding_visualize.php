@@ -37,6 +37,7 @@
                 <div>
                   <table class = "table">
                   <tr>
+                          <td>User<br> </td> 
                           <td>Titel<br> </td> 
                           <td>Melding ID<br> </td>
                           <td>Status<br> </td>
@@ -45,16 +46,17 @@
                           </tr>
                   
                   <?php
-                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
+                        $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
                         $sql2 = "SELECT statusID, status FROM status";
                         $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
                         $result3 = $conn->query($sql3);
                         $result2 = $conn->query($sql2);
                         $result = $conn->query($sql1);
-                        
+
                         while($row = $result->fetch_assoc()) {
                           
                           echo "<tr>";
+                          echo "<td>" .$row["userID"]."<br> </td>"; 
                           echo "<td>" .$row["beschr_kort"]."<br> </td>"; 
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td>" .$row["statusID"]."<br> </td>";
