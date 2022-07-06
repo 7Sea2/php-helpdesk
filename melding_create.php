@@ -51,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="wrapper">
         <div class="sidebar">
-            <h2>[user-name]</h2>
+            <h2><?php if($_SESSION['loggedin']){echo $current_user['naam'];} else{echo 'je moet inloggen';} ?></h2>
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>

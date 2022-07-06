@@ -26,11 +26,6 @@ session_start();
         <div class="main_content">
             <div class="header">Welcome!</div>
             <div class="info">
-<<<<<<< Updated upstream:helpdesk-dashboard/dashboard.html
-                <div>
-                    
-                </div>
-=======
                 <?php
                 if ($_SESSION['loggedin']) {
                     echo "logged in succesfully";
@@ -38,17 +33,6 @@ session_start();
                     echo "not logged in";
                 }
                 ?>
-                <!--<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet fugit, animi repudiandae placeat, molestiae incidunt praesentium unde earum vitae 
-                     maiores reprehenderit impedit amet consequatur quaerat quasi m
-                     inima numquam ratione sapiente possimus eaque illo eius. Beatae laboriosam at animi vel. Non
-                     , beatae eligendi. Esse veniam consequuntur eveniet soluta dolorem nisi corrupti autem minima nihil sunt optio 
-                     sed maiores ea quam suscipit omnis ex temporibus cum, accusantium laudantium cupiditate. Consequatur blanditiis ab non suscipit aliquid dolorem cumque harum
-                     , corrupti, repellendus qui unde!</div>
->>>>>>> Stashed changes:templates/dashboardtemplate.php
             </div>
-        </div>-->
-            </div>
-
 </body>
-
 </html>

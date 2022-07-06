@@ -8,14 +8,15 @@
     <script src="https://kit.fontawesome.com/fbea3c1d87.js" crossorigin="anonymous"></script>
       <?php
       include 'config.php';
-
+      include 'scripts/verify_user.php';
+      need_login();
       ?>
 </head>
 <body>
 
     <div class="wrapper">
         <div class="sidebar">
-            <h2>[user-name]</h2>
+            <h2><?php if($_SESSION['loggedin']){echo $current_user['naam'];} else{echo 'je moet inloggen';} ?></h2>
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
@@ -42,17 +43,17 @@
                   <?php
 
                         
-                        $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
-                        $sql2 = "SELECT statusID, status FROM status";
+                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
                         $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        // $sql4 = "SELECT naam FROM users WHERE userID = ".$current_user['userID'];
+                        // $result4 = $conn->query($sql4);
                         $result3 = $conn->query($sql3);
-                        $result2 = $conn->query($sql2);
                         $result = $conn->query($sql1);
 
                         while($row = $result->fetch_assoc()) {
                             $mid = $row["meldingID"];
                           echo "<tr>";
-                          echo "<td>" .$row["userID"]."<br>  </td>"; 
+                          echo "<td>" .$current_user["naam"]."<br>  </td>"; 
                           echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td>" .$row["statusID"]."<br> </td>";
