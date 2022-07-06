@@ -79,8 +79,8 @@ try {
                                 $_SESSION["userID"] = $UserID;
                                 $_SESSION["email"] = $email;
 
-                                //redirect user to welcome page
-                                header("location: welcome.php");
+                                //redirect user to dashboard page
+                                header("location: index.php");
                             }
                             else{
                                 //invalid password, display error message

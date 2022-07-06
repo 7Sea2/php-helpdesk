@@ -24,6 +24,8 @@ body{
     height: 100%;
     background: #3597e7;
     padding: 30px 0;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 h2{
@@ -49,10 +51,33 @@ h2{
 }
 
 .wrapper .sidebar ul li:hover{
-    background: #3597e7;
+    background: #2b7ec2;
 }
 
 .wrapper .sidebar ul li:hover a{
+    color: #f3f5f9;
+}
+
+.wrapper .sidebar .logout{
+    color:#000;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.05);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.wrapper .sidebar .logout .fas{
+    width: 25px;
+}
+
+.wrapper .sidebar .logout:hover{
+    background: #2b7ec2;
+}
+
+.wrapper .sidebar .logout:hover a{
     color: #f3f5f9;
 }
 
@@ -66,6 +91,9 @@ h2{
     background: #fff;
     color: #717171;
     border-bottom: 1px solid #e0e4e8;
+    position:fixed;
+    right: 0px;
+    left: 200px;
 }
 
 .wrapper .main_content .info{
