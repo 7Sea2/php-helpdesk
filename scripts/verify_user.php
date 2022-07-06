@@ -4,10 +4,11 @@
 	{
 		$_SESSION["loggedin"] = false;
 	}
-	else if ($_SESSION["loggedin"])
+	
+	if ($_SESSION["loggedin"])
 	{
           $id=$_SESSION['userID'];
-          $query = $conn->query("SELECT naam, telnr, alt_telnr, email, rollID FROM users WHERE userID =".$id);
+          $query = $conn->query("SELECT userID, naam, telnr, alt_telnr, email, rollID FROM users WHERE userID =".$id);
           $current_user = null;
           while ($i = $query->fetch_assoc())
           {

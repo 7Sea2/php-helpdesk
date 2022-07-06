@@ -1,6 +1,7 @@
 <?php
-
 Include 'config.php';
+include 'scripts/verify_user.php';
+
 
 //hieronder de query
 $sql1 = "SELECT catID, cat_naam FROM categorie ORDER BY catID";
@@ -17,9 +18,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $beschr_lang = $_POST['beschr_lang'];
     $itemID = $_POST['item'];
     $datetime = date('Y-m-d H:i:s');
+    $userID = $current_user['userID'];
 
-    $insertquery = "INSERT INTO meldingen (catID, beschr_kort, beschr_lang, itemID, datum)
-    VALUES ('$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime')";
+    $insertquery = "INSERT INTO meldingen (userID, catID, beschr_kort, beschr_lang, itemID, datum)
+    VALUES ('$userID', '$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime')";
     $insertresult = $conn->query($insertquery);
     header("location:melding_visualize.php");
 }
@@ -31,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Maak melding aan</title>
-    <link rel="stylesheet" href="helpdesk-dashboard/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/fbea3c1d87.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -55,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
                 <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
             </ul>
+            <li><a href="logoutConfirm.php" class="logout"><i class="fas fa-minus"></i>Log Out</a></li>
 
         </div>
         <div class="main_content">
