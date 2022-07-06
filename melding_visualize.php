@@ -17,9 +17,9 @@
         <div class="sidebar">
             <h2>[user-name]</h2>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i>Thuispagina</a></li>
-                <li><a href="#"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
-                <li><a href="#"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <li><a href="helpdesk-dashboard/dashboard.html"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
+                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
             </ul>
 
         </div>
@@ -29,27 +29,41 @@
                 <div>
                   <table class = "table">
                   <tr>
-                          <td> Titel <br> </td> 
-                          <td> Melding ID<br> </td>
-                          <td> Status <br> </td>
+                          <td>User<br> </td> 
+                          <td>Titel<br> </td> 
+                          <td>Melding ID<br> </td>
+                          <td>Status<br> </td>
+                          <td>Prioriteit <br> </td>
                           <td>Datum <br> </td>
                           </tr>
                   
                      
                   <?php
+<<<<<<< Updated upstream
 
                         
                         $sql1 = "SELECT meldingID, statusID, beschr_kort, datum FROM meldingen";
+=======
+                        $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
+>>>>>>> Stashed changes
                         $sql2 = "SELECT statusID, status FROM status";
+                        $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        $result3 = $conn->query($sql3);
                         $result2 = $conn->query($sql2);
                         $result = $conn->query($sql1);
-                        
+
                         while($row = $result->fetch_assoc()) {
                             $mid = $row["meldingID"];
                           echo "<tr>";
+<<<<<<< Updated upstream
                           echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
+=======
+                          echo "<td>" .$row["userID"]."<br> </td>"; 
+                          echo "<td>" .$row["beschr_kort"]."<br> </td>"; 
+>>>>>>> Stashed changes
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td>" .$row["statusID"]."<br> </td>";
+                          echo "<td>" .$row["prioID"]."<br> </td>";                          
                           echo "<td>" .$row["datum"]."<br> </td>";
                           echo "<td><a href='reactie.php?meldingid=$mid'>   <input type='button' value='test'></a> <br> </td>";
                           echo "</tr>";
