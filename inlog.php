@@ -86,7 +86,7 @@ try {
                                 }
                                 else
                                 {
-                                    header("location: helpdesk-dashboard/dashboard.php");
+                                    header("location: index.php");
                                 }
                             }
                             else{
