@@ -39,13 +39,9 @@
                   
                      
                   <?php
-<<<<<<< Updated upstream
 
                         
-                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum FROM meldingen";
-=======
                         $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
->>>>>>> Stashed changes
                         $sql2 = "SELECT statusID, status FROM status";
                         $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
                         $result3 = $conn->query($sql3);
@@ -55,12 +51,8 @@
                         while($row = $result->fetch_assoc()) {
                             $mid = $row["meldingID"];
                           echo "<tr>";
-<<<<<<< Updated upstream
+                          echo "<td>" .$row["userID"]."<br>  </td>"; 
                           echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
-=======
-                          echo "<td>" .$row["userID"]."<br> </td>"; 
-                          echo "<td>" .$row["beschr_kort"]."<br> </td>"; 
->>>>>>> Stashed changes
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td>" .$row["statusID"]."<br> </td>";
                           echo "<td>" .$row["prioID"]."<br> </td>";                          
