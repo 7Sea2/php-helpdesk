@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+    background: #f3f5f9;
+}
+
+.wrapper{
+    display: flex;
+    position: relative;
+}
+
+.wrapper .sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #3597e7;
+    padding: 30px 0;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+h2{
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wrapper .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.05);
+}
+
+.wrapper .sidebar ul li a{
+    color:#000;
+    display: block;
+}
+
+.wrapper .sidebar ul li a .fas{
+    width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+    background: #2b7ec2;
+}
+
+.wrapper .sidebar ul li:hover a{
+    color: #f3f5f9;
+}
+
+.wrapper .sidebar .logout{
+    color:#000;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(225, 225, 225, 0.05);
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.wrapper .sidebar .logout .fas{
+    width: 25px;
+}
+
+.wrapper .sidebar .logout:hover{
+    background: #2b7ec2;
+}
+
+.wrapper .sidebar .logout:hover a{
+    color: #f3f5f9;
+}
+
+.wrapper .main_content{
+    width: 100%;
+    margin-left: 200px;
+}
+
+.wrapper .main_content .header{
+    padding: 20px;
+    background: #fff;
+    color: #717171;
+    border-bottom: 1px solid #e0e4e8;
+}
+
+.wrapper .main_content .info{
+    margin: 20px;
+    color: #717171;
+    line-height: 25px;
+}
+
+.wrapper .main_content .info div{
+    margin-bottom: 20px;
+}
+
+.logoutPage {
+    position: fixed;
+    top: 20%;
+    bottom: 20%;
+    left: 20%;
+    right: 20%;
+    background-color: #3597e7;
+}
+
+.confirmBoxLogout {
+    background-color: #2b7ec2;
+    padding: 15px;
+    text-align: center;
+    font-size: 180%;
+}
+
+.buttonContainer {
+    position: fixed;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+}

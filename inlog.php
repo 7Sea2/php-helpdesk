@@ -79,6 +79,7 @@ try {
                                 $_SESSION["userID"] = $UserID;
                                 $_SESSION["email"] = $email;
 
+<<<<<<< Updated upstream
                                 //redirect user to welcome page
                                 if (isset($_SESSION['page']))
                                 {
@@ -88,6 +89,10 @@ try {
                                 {
                                     header("location: index.php");
                                 }
+=======
+                                //redirect user to dashboard page
+                                header("location: index.php");
+>>>>>>> Stashed changes
                             }
                             else{
                                 //invalid password, display error message
