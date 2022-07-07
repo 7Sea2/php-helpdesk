@@ -19,9 +19,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $itemID = $_POST['item'];
     $datetime = date('Y-m-d H:i:s');
     $userID = $current_user['userID'];
+    $status = 1;
 
-    $insertquery = "INSERT INTO meldingen (userID, catID, beschr_kort, beschr_lang, itemID, datum)
-    VALUES ('$userID', '$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime')";
+    $insertquery = "INSERT INTO meldingen (userID, catID, beschr_kort, beschr_lang, itemID, datum, statusID)
+    VALUES ('$userID', '$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime', '$status')";
     $insertresult = $conn->query($insertquery);
     header("location:melding_visualize.php");
 }
