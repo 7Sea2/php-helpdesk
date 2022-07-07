@@ -30,6 +30,14 @@ include 'scripts/verify_user.php';
         <div class="main_content">
             <div class="header">Welcome!</div>
             <div class="info">
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
                 <?php
                 if ($_SESSION['loggedin']) {
                     echo "logged in succesfully";

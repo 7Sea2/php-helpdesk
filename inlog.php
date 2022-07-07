@@ -8,14 +8,14 @@ session_start();
 
 
 $servername = $DB_HOST;
-$email = $DB_USER;
+$user = $DB_USER;
 $password = $DB_PASSWORD;
 $databasename = $DB_NAAM;
 $message = "";
 
 
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=$databasename", $email, $password);
+  $conn = new PDO("mysql:host=$servername;dbname=$databasename", $user, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //echo "Connected successfully";
@@ -79,8 +79,15 @@ try {
                                 $_SESSION["userID"] = $UserID;
                                 $_SESSION["email"] = $email;
 
-                                //redirect user to dashboard page
-                                header("location: index.php");
+                                //redirect user to welcome page
+                                if (isset($_SESSION['page']))
+                                {
+                                    header("location: ".$_SESSION['page']);
+                                }
+                                else
+                                {
+                                    header("location: index.php");
+                                }
                             }
                             else{
                                 //invalid password, display error message
