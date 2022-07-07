@@ -38,6 +38,7 @@
 		   if (!$_SESSION["loggedin"])
 		   {
 			header("location: inlog.php");
+			die();
 		   }
 	}
 
