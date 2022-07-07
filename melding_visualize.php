@@ -50,32 +50,78 @@ include 'scripts/verify_user.php';
 
 
                         <?php
+                        $user_now = $current_user['naam'];
 
 
-                        $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
-                        $sql2 = "SELECT statusID, status FROM status";
+                        $joinquery = "SELECT users.naam, meldingen.meldingID, status.status, meldingen.beschr_kort, meldingen.datum, meldingen.prioID FROM meldingen RIGHT JOIN status ON meldingen.meldingID = meldingen.meldingID LEFT JOIN users ON meldingen.userID = meldingen.userID WHERE meldingen.statusID = status.statusID AND status.statusID BETWEEN 0 AND 4 AND meldingen.userID = users.userID AND users.naam = '$user_now'";
+                        $joinqueryresult = $conn->query($joinquery);
+                        // $sql1 = "SELECT userID, meldingID, statusID, beschr_kort, datum, prioID FROM meldingen";
+                        // $sql2 = "SELECT statusID, status FROM status";
                         $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
                         $result3 = $conn->query($sql3);
-                        $result2 = $conn->query($sql2);
-                        $result = $conn->query($sql1);
+                        // $result2 = $conn->query($sql2);
+                        // $result = $conn->query($sql1);
 
-                        while ($row = $result->fetch_assoc()) {
+                        while ($row = $joinqueryresult->fetch_assoc()) {
                             $mid = $row["meldingID"];
                             echo "<tr>";
-                            echo "<td>" . $row["userID"] . "<br>  </td>";
+                            echo "<td>" . $row["naam"] . "<br>  </td>";
                             echo "<td>" . $row["beschr_kort"] . "<br>  </td>";
                             echo "<td>" . $row["meldingID"] . "<br> </td>";
-                            echo "<td>" . $row["statusID"] . "<br> </td>";
+                            echo "<td>" . $row['status'] . "<br> </td>";
                             echo "<td>" . $row["prioID"] . "<br> </td>";
                             echo "<td>" . $row["datum"] . "<br> </td>";
-                            echo "<td><a href='reactie.php?meldingid=$mid'>   <input type='button' value='test'></a> <br> </td>";
+                            echo "<td><a href='reactie.php?meldingid=$mid'>   <input type='button' value='Zie Melding'></a> <br> </td>";
                             echo "</tr>";
                         }
 
                         ?>
 
-                        </input>
-                    </table>
+                  </input>
+                  </table>
+
+                  <br><br><h3>Gearchiveerde Meldingen</h3>
+
+                  <table class = "table">
+                  <tr>
+                          <td>User<br> </td> 
+                          <td>Titel<br> </td> 
+                          <td>Melding ID<br> </td>
+                          <td>Status<br> </td>
+                          <td>Prioriteit <br> </td>
+                          <td>Datum <br> </td>
+                          </tr>
+                  
+                     
+                  <?php
+
+                        $joinquery2 = "SELECT users.naam, meldingen.meldingID, status.status, meldingen.beschr_kort, meldingen.datum, meldingen.prioID FROM meldingen RIGHT JOIN status ON meldingen.meldingID = meldingen.meldingID LEFT JOIN users ON meldingen.userID = meldingen.userID WHERE meldingen.statusID = status.statusID AND meldingen.statusID = 5 AND meldingen.userID = users.userID AND users.naam = '$user_now'";
+
+                        // $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen WHERE statusID = 5";
+                        $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        // $sql4 = "SELECT naam FROM users WHERE userID = ".$current_user['userID'];
+                        // $result4 = $conn->query($sql4);
+                        $result3 = $conn->query($sql3);
+                        $result = $conn->query($joinquery2);
+
+                        while ($row = $result->fetch_assoc()) {
+                            $mid = $row["meldingID"];
+                          echo "<tr>";
+                          echo "<td>" .$row["naam"]."<br>  </td>"; 
+                          echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
+                          echo "<td>" .$row["meldingID"]."<br> </td>";
+                          echo "<td>" .$row["status"]."<br> </td>";
+                          echo "<td>" .$row["prioID"]."<br> </td>";                          
+                          echo "<td>" .$row["datum"]."<br> </td>";
+                          echo "<td><a href='reactie.php?meldingid=$mid'>   <input type='button' value='Zie Melding'></a> <br> </td>";
+                          echo "</tr>";
+                          
+                          } 
+
+                  ?>
+
+                  </input>
+                  </table>
                 </div>
             </div>
         </div>
