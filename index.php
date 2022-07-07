@@ -1,5 +1,6 @@
 <?php
-session_start();
+include 'config.php';
+include 'scripts/verify_user.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,10 @@ session_start();
 
     <div class="wrapper">
         <div class="sidebar">
-            <h2>[user-name]</h2>
+            <h2>Morb-OS</h2>
+            <h4> User: <?php
+                    echo $current_user['naam'];
+                    ?></h4>
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
@@ -27,7 +31,12 @@ session_start();
             <div class="header">Welcome!</div>
             <div class="info">
                 <div>
-                    
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet fugit, animi repudiandae placeat, molestiae incidunt praesentium unde earum vitae 
+                    maiores reprehenderit impedit amet consequatur quaerat quasi m
+                    inima numquam ratione sapiente possimus eaque illo eius. Beatae laboriosam at animi vel. Non
+                    , beatae eligendi. Esse veniam consequuntur eveniet soluta dolorem nisi corrupti autem minima nihil sunt optio 
+                    sed maiores ea quam suscipit omnis ex temporibus cum, accusantium laudantium cupiditate. Consequatur blanditiis ab non suscipit aliquid dolorem cumque harum
+                    , corrupti, repellendus qui unde!
                 </div>
             </div>
         </div>
@@ -41,7 +50,22 @@ session_start();
                     header("location: indexLoggedout.php");
                     echo "logout failed";
                 }
+                // $email = $_POST['email'];
+                // $query = "SELECT * FROM users WHERE email='$email'"
+                // $row = mysql_fetch_array($query);
+                // $username = $row['username'];
+
+                echo $current_user['naam'];
+
                 ?>
+                <!--<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet fugit, animi repudiandae placeat, molestiae incidunt praesentium unde earum vitae 
+                     maiores reprehenderit impedit amet consequatur quaerat quasi m
+                     inima numquam ratione sapiente possimus eaque illo eius. Beatae laboriosam at animi vel. Non
+                     , beatae eligendi. Esse veniam consequuntur eveniet soluta dolorem nisi corrupti autem minima nihil sunt optio 
+                     sed maiores ea quam suscipit omnis ex temporibus cum, accusantium laudantium cupiditate. Consequatur blanditiis ab non suscipit aliquid dolorem cumque harum
+                     , corrupti, repellendus qui unde!</div>
+            </div>
+        </div>-->
             </div>
 
 </body>

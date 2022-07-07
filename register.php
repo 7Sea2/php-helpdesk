@@ -1,9 +1,9 @@
 
 <?php
+session_start();
+//in DB, collectors table, handelingen, daar staan de users die toegang hebben tot de database met de bijbehorende servernaam en username.
 
-Include 'config.php';
-include 'scripts/verify_user.php';
-
+Include 'env.php';
 
 $servername = $DB_HOST;
 $username = $DB_USER;
@@ -37,11 +37,21 @@ try {
             $statement->bindParam(':tel1', $tel1);
             $statement->bindParam(':tel2', $tel2);
 
+            // $statement->bindParam(":name", $param_name, PDO::PARAM_STR);
+            // $statement->bindParam(":surname", $param_surname, PDO::PARAM_STR);
+            // $statement->bindParam(":username", $param_username, PDO::PARAM_STR);
+            // $statement->bindParam(":password", $param_password, PDO::PARAM_STR);
+            // $statement->bindParam(":email", $param_email, PDO::PARAM_STR);
+
+
             $username      =      $_POST["username"];
             $password      =      password_hash($_POST["password"], PASSWORD_DEFAULT);
             $email      =      $_POST["email"];
             $tel1   =   $_POST["tel1"];
             $tel2   =   $_POST['tel2'];
+
+            // $param_username = $username;
+            // $param_password = password_hash($password, PASSWORD_DEFAULT);
 
             $statement->execute();
 
@@ -64,15 +74,14 @@ try {
 
 ?>
 
+
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/fbea3c1d87.js" crossorigin="anonymous"></script>
+    <head>
 
-    <title>Registratie</title>
+        <title>Login Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -81,37 +90,55 @@ try {
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/main.css">
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/logintest.css">
 
+        <style>
+            <?php include "main.css" ?>
+            <?php include "login.css" ?>
+            /* using php to connect to a css file */
+        </style>
+
 
  
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-</head>
+        
+      
+    </head>
+    
+    <body >
 
-<body>
 
-    <div class="wrapper">
-        <div class="sidebar">
-            <h2><?php if($_SESSION['loggedin']){echo $current_user['naam'];} else{echo 'je moet inloggen';} ?></h2>
-            <ul>
-                <li><a href="dashboard.html"><i class="fas fa-home"></i>Thuispagina</a></li>
-                <li><a href="../melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
-                <li><a href="../melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
-            </ul>
-            <li><a href="#" class="logout"><i class="fas fa-minus"></i>Log Out</a></li>
-        </div>
-        <div class="main_content">
-            <div class="header">Welcome!</div>
-            <div class="info">
-                <!-- <?php
-                if ($_SESSION['loggedin']) {
-                    echo "logged in succesfully";
-                } else {
-                    echo "not logged in";
-                }
-                ?> -->
+        <!--THIS IS THE NAVBAR-->
+    <div class="main">
+        <nav class="navbar navbar-expand-md">
+            <a class="navbar-brand" href="index.php">CollectionHub</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-navigation">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#"></a>                        
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input type="text" class="form-control" placeholder="Search">
+                          </div>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
-<header class="page-header header container-fluid">                        
+
+
+        
+
+        <header class="page-header header container-fluid">
+            <!-- <div class="overlay"></div>        -->
+                        
             <div class="container" style="width:500px;">  
                 <?php  
                 if(isset($message))  
@@ -119,12 +146,12 @@ try {
                      echo '<label class="text-danger">'.$message.'</label>';  
                 }  
                 ?>  
-                <h3 >Maak je Morb OS account aan</h3><br />  
+                <h3 >Create your CollectionHub account</h3><br />  
                 <form action=""  method="POST">
-                     <label>Naam</label>  
+                     <label>Username</label>  
                      <input type="text" name="username" class="form-control" />  
                      <br />  
-                     <label>Wachtwoord</label>  
+                     <label>Password</label>  
                      <input type="password" name="password" class="form-control" />  
                      <br />  
                      <label>Email</label>  
@@ -140,9 +167,14 @@ try {
                 </form>  
            </div>
         </header>
+
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-   
-            </div>
-</body>
+
+
+        
+    </body>
+    
 </html>
