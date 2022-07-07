@@ -35,11 +35,14 @@
 
     <div class="wrapper">
         <div class="sidebar">
-            <h2><?php if ($_SESSION['loggedin']) {echo $current_user['naam'];} else {echo "[user-name]"; } ?></h2>
+        <h2>Morb-OS</h2>
+            <h4> User: <?php
+                        echo $current_user['naam'];
+                        ?></h4>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i>Thuispagina</a></li>
-                <li><a href="#"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
-                <li><a href="#"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
+                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
             </ul>
 
         </div>
