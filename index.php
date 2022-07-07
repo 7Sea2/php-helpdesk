@@ -26,6 +26,12 @@ include 'scripts/verify_user.php';
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
                 <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <?php
+                    if (isset($current_user))
+                    {
+                        if ($current_user['rollID'] == 1) echo '<li><a href="admin.php"><i class="fas fa-address-book"></i>Administratie</a></li>';
+                    }
+                ?>
             </ul>
             <li><a href="logoutConfirm.php" class="logout"><i class="fas fa-minus"></i>Log Out</a></li>
         </div>

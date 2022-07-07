@@ -19,9 +19,15 @@
         <div class="sidebar">
             <h2><?php if ($_SESSION['loggedin']) {echo $current_user['naam'];} else {echo "[user-name]"; } ?></h2>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i>Thuispagina</a></li>
-                <li><a href="#"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
-                <li><a href="#"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
+                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
+                <?php
+                    if (isset($current_user))
+                    {
+                        if ($current_user['rollID'] == 1) echo '<li><a href="admin.php"><i class="fas fa-address-book"></i>Administratie</a></li>';
+                    }
+                ?>
             </ul>
 
         </div>
