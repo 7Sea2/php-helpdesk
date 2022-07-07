@@ -1,7 +1,7 @@
 <?php
 Include 'env.php';
+include 'scripts/verify_user.php';
 
-session_start();
 
 // var_dump($_SESSION);
 //in DB, collectors table, handelingen, daar staan de users die toegang hebben tot de database met de bijbehorende servernaam en email.
@@ -114,29 +114,21 @@ try {
         unset($conn);
     }
 
-
-
-
-
 }
   catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-
-
-
-
-
 ?>
 
-
 <!DOCTYPE html>
-
 <html lang="en">
 
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fbea3c1d87.js" crossorigin="anonymous"></script>
 
-        <title>Login Page</title>
+    <title>Login Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -147,69 +139,41 @@ try {
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/main.css">
         <link rel="stylesheet" type="text/css" href="../bootstrap/css/logintest.css">
 
-        <style>
-            <?php include "main.css" ?>
-            <?php include "login.css" ?>
-            /* using php to connect to a css file */
-        </style>
 
 
  
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-        
-      
-    </head>
-    
-    <body >
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head>
 
-        <script src="../bootstrap/js/main.js"></script> <!-- links with the javascript document -->
+<body>
 
-
-        <!--THIS IS THE NAVBAR-->
-    <div class="main">
-        <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="index.php">CollectionHub</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="main-navigation">
-                <ul class="navbar-nav">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#"></a>                        
-                        <div class="form-group has-search">
-                            <span class="fa fa-search form-control-feedback"></span>
-                            <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
-
-
-        
-
-        <header class="page-header header container-fluid">
-            <!-- <div class="overlay"></div>        -->
-                        
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2><?php if($_SESSION['loggedin']){echo $current_user['naam'];} else{echo 'je moet inloggen';} ?></h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="../melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
+                <li><a href="../melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
+            </ul>
+            <li><a href="#" class="logout"><i class="fas fa-minus"></i>Log Out</a></li>
+        </div>
+        <div class="main_content">
+            <div class="header">Welcome!</div>
+            <div class="info">
+                
+       
+        <header class="page-header header container-fluid">                        
             <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-
+        <h1>Login</h1>
         <?php 
         if(!empty($login_err)){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
         }        
         ?>
-
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
+            <div class="form-group"><br><br><br>
                 <label>Email</label>
                 <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
                 <span class="invalid-feedback"><?php echo $email_err; ?></span>
@@ -222,20 +186,20 @@ try {
             <div class="form-group">
                 <input type="submit" name="login" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Nog geen account?<a href="register.php"> Maak nu één aan!</a>.</p>
         </form>
     </div>
         </header>
-
-
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 
-        
-    </body>
-    
+
+
+
+
+            </div>
+</body>
 </html>
 
 

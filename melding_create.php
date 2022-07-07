@@ -19,9 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $itemID = $_POST['item'];
     $datetime = date('Y-m-d H:i:s');
     $userID = $current_user['userID'];
+    $status = 1;
 
-    $insertquery = "INSERT INTO meldingen (userID, catID, beschr_kort, beschr_lang, itemID, datum)
-    VALUES ('$userID', '$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime')";
+    $insertquery = "INSERT INTO meldingen (userID, catID, beschr_kort, beschr_lang, itemID, datum, statusID)
+    VALUES ('$userID', '$catID', '$beschr_kort', '$beschr_lang', '$itemID', '$datetime', '$status')";
     $insertresult = $conn->query($insertquery);
     header("location:melding_visualize.php");
 }
@@ -55,7 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="sidebar">
             <h2>Morb-OS</h2>
             <h4> User: <?php
-                        echo $current_user['naam'];
+                        if ($_SESSION['loggedin']) {
+                            echo $current_user['naam'];
+                        } else {
+                            header("location: indexLoggedout.php");
+                            echo "verification failed";
+                        }
                         ?></h4>
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>

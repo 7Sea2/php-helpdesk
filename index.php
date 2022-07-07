@@ -18,8 +18,13 @@ include 'scripts/verify_user.php';
         <div class="sidebar">
             <h2>Morb-OS</h2>
             <h4> User: <?php
-                    echo $current_user['naam'];
-                    ?></h4>
+                        if ($_SESSION['loggedin']) {
+                            echo $current_user['naam'];
+                        } else {
+                            header("location: indexLoggedout.php");
+                            echo "verification failed";
+                        }
+                        ?></h4>
             <ul>
                 <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="melding_visualize.php"><i class="fas fa-layer-group"></i>Zie Meldingen</a></li>
@@ -31,29 +36,29 @@ include 'scripts/verify_user.php';
             <div class="header">Welcome!</div>
             <div class="info">
                 <div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 
 </body>
-                <?php
-                if ($_SESSION['loggedin']) {
-                    echo "logged in succesfully";
-                } else {
-                    header("location: indexLoggedout.php");
-                    echo "logout failed";
-                }
-                // $email = $_POST['email'];
-                // $query = "SELECT * FROM users WHERE email='$email'"
-                // $row = mysql_fetch_array($query);
-                // $username = $row['username'];
+<?php
+if ($_SESSION['loggedin']) {
+    echo "logged in succesfully";
+} else {
+    header("location: indexLoggedout.php");
+    echo "logout failed";
+}
+// $email = $_POST['email'];
+// $query = "SELECT * FROM users WHERE email='$email'"
+// $row = mysql_fetch_array($query);
+// $username = $row['username'];
 
-                echo $current_user['naam'];
+echo $current_user['naam'];
 
-                ?>
-                <!--<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet fugit, animi repudiandae placeat, molestiae incidunt praesentium unde earum vitae 
+?>
+<!--<div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet fugit, animi repudiandae placeat, molestiae incidunt praesentium unde earum vitae 
                      maiores reprehenderit impedit amet consequatur quaerat quasi m
                      inima numquam ratione sapiente possimus eaque illo eius. Beatae laboriosam at animi vel. Non
                      , beatae eligendi. Esse veniam consequuntur eveniet soluta dolorem nisi corrupti autem minima nihil sunt optio 
@@ -61,7 +66,7 @@ include 'scripts/verify_user.php';
                      , corrupti, repellendus qui unde!</div>
             </div>
         </div>-->
-            </div>
+</div>
 
 </body>
 

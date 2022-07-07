@@ -7,7 +7,12 @@ include 'scripts/verify_user.php';
 
 <h2>Morb-OS</h2>
 <h4> User: <?php
-            echo $current_user['naam'];
+            if ($_SESSION['loggedin']) {
+                echo $current_user['naam'];
+            } else {
+                header("location: indexLoggedout.php");
+                echo "verification failed";
+            }
             ?></h4>
 <ul>
     <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
