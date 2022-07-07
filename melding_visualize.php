@@ -104,7 +104,7 @@ include 'scripts/verify_user.php';
                         $result3 = $conn->query($sql3);
                         $result = $conn->query($joinquery2);
 
-                        while($row = $result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                             $mid = $row["meldingID"];
                           echo "<tr>";
                           echo "<td>" .$row["naam"]."<br>  </td>"; 
