@@ -68,6 +68,48 @@
 
                   </input>
                   </table>
+
+                  <br><br><h3>Gearchiveerde Meldingen</h3>
+
+                  <table class = "table">
+                  <tr>
+                          <td>User<br> </td> 
+                          <td>Titel<br> </td> 
+                          <td>Melding ID<br> </td>
+                          <td>Status<br> </td>
+                          <td>Prioriteit <br> </td>
+                          <td>Datum <br> </td>
+                          </tr>
+                  
+                     
+                  <?php
+
+                        
+                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen WHERE statusID = 5";
+                        $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        // $sql4 = "SELECT naam FROM users WHERE userID = ".$current_user['userID'];
+                        // $result4 = $conn->query($sql4);
+                        $result3 = $conn->query($sql3);
+                        $result = $conn->query($sql1);
+
+                        while($row = $result->fetch_assoc()) {
+                            $mid = $row["meldingID"];
+                          echo "<tr>";
+                          echo "<td>" .$current_user["naam"]."<br>  </td>"; 
+                          echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
+                          echo "<td>" .$row["meldingID"]."<br> </td>";
+                          echo "<td>" .$row["statusID"]."<br> </td>";
+                          echo "<td>" .$row["prioID"]."<br> </td>";                          
+                          echo "<td>" .$row["datum"]."<br> </td>";
+                          echo "<td><a href='reactie.php?meldingid=$mid'>   <input type='button' value='test'></a> <br> </td>";
+                          echo "</tr>";
+                          
+                          } 
+
+                  ?>
+
+                  </input>
+                  </table>
                 </div>
             </div>
         </div>
