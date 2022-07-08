@@ -90,6 +90,26 @@
                         }
 
                         while($row = $result->fetch_assoc()) {
+                            $color = '#343a40';
+
+                            switch ($row['statusID'])
+                            {
+                                case 1:
+                                    $color = '#e83e8c';
+                                    break;
+                                case 2:
+                                    $color = '#28a745';
+                                    break;
+                                case 3:
+                                    $color = '#dc3545';
+                                    break;
+                                case 4:
+                                    $color = '#343a40';
+                                    break;
+                                case 5:
+                                    $color = '#ffc107';
+                                    break;
+                            }
                             $mid = $row["meldingID"];
 
                           echo "<tr>";
@@ -103,7 +123,7 @@
                             if ($stat_row['statusID'] == $row['statusID']) $default = "selected='selected'";
                             echo "<option value='".$stat_row['statusID']."' ".$default."'>".$stat_row['status']."</option>";
                           }
-                          echo "</select></form></td>";
+                          echo "</select> <i class='fas fa-circle' style='color: ".$color."'></form></i></td>";
                           echo "<td><form action='admin.php' method='get'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='prio' onchange='this.form.submit()'>";
                           foreach($prio_arr as $prio_row)
                           {
@@ -147,14 +167,49 @@
                     $result = $conn->query($sql1);
 
                     while ($row = $result->fetch_assoc()) {
+                        $color = '#343a40';
+
+                        switch ($row['statusID'])
+                        {
+                            case 1:
+                                $color = '#e83e8c';
+                                break;
+                            case 2:
+                                $color = '#28a745';
+                                break;
+                            case 3:
+                                $color = '#dc3545';
+                                break;
+                            case 4:
+                                $color = '#343a40';
+                                break;
+                            case 5:
+                                $color = '#ffc107';
+                                break;
+                        }
                         $mid = $row["meldingID"];
                         echo "<tr>";
                         echo "<td>" . $current_user["naam"] . "<br>  </td>";
                         echo "<td>" . $row["beschr_kort"] . "<br>  </td>";
-                        echo "<td>" . $row["meldingID"] . "<br> </td>";
-                        echo "<td>" . $row["statusID"] . "<br> </td>";
-                        echo "<td>" . $row["prioID"] . "<br> </td>";
-                        echo "<td>" . $row["datum"] . "<br> </td>";
+                        echo "<td>" . $row["meldingID"] . "<br> </td><td>";
+                        foreach($stat_arr as $stat_row)
+                        {
+                            if($stat_row['statusID'] == $row['statusID'])
+                            {
+                                echo $stat_row["status"];
+                                break;
+                            }
+                        }
+                        echo " <i class='fas fa-circle' style='color: ".$color."'></i><br> </td><td>";
+                        foreach($prio_arr as $prio_row)
+                        {
+                            if($prio_row['prioID'] == $row['prioID'])
+                            {
+                                echo "<td>" . $prio_row["prioriteit"] . "<br> </td>";
+                                break;
+                            }
+                        }
+                        echo "</td><td>" . $row["datum"] . "<br> </td>";
                         echo "<td><form action='admin.php' method='get'><input type='hidden' name='revive' value='".$row["meldingID"]."'><button class='btn btn-warning' type='submit'>zet terug</button></form> <br> </td>";
                         echo "</tr>";
                     }
