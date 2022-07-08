@@ -17,10 +17,11 @@ session_start();
 
     <div class="wrapper">
         <div class="sidebar">
+        <img src="img/morbius.png" class=amogus></img>
+            <h2>Morb-OS</h2>
             <ul>
-                <li><a href="indexLoggedout.php"><i class="fas fa-home"></i>Thuispagina</a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="about.php"><i class="fas fa-pager"></i>About Us</a></li>
-                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
                 <?php
                     if (isset($current_user))
                     {

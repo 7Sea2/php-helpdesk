@@ -18,7 +18,8 @@ include 'scripts/verify_user.php';
 
     <div class="wrapper">
         <div class="sidebar">
-        <h2>Morb-OS</h2>
+        <img src="img/morbius.png" class=amogus></img>
+            <h2>Morb-OS</h2>
             <h4> User: <?php
                         echo $current_user['naam'];
                         ?></h4>

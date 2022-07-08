@@ -17,15 +17,15 @@ session_start();
 
     <div class="wrapper">
         <div class="sidebar">
+            <img src="img/morbius.png" class=amogus></img>
+            <h2>Morb-OS</h2>
             <ul>
                 <li><a href="indexLoggedout.php"><i class="fas fa-home"></i>Thuispagina</a></li>
                 <li><a href="about.php"><i class="fas fa-pager"></i>About Us</a></li>
-                <li><a href="melding_create.php"><i class="fas fa-plus"></i>Maak Melding</a></li>
                 <?php
-                    if (isset($current_user))
-                    {
-                        if ($current_user['rollID'] == 1) echo '<li><a href="admin.php"><i class="fas fa-address-book"></i>Administratie</a></li>';
-                    }
+                if (isset($current_user)) {
+                    if ($current_user['rollID'] == 1) echo '<li><a href="admin.php"><i class="fas fa-address-book"></i>Administratie</a></li>';
+                }
                 ?>
             </ul>
             <li><a href="inlog.php" class="logout"><i class="fas fa-plus"></i>Log In</a></li>

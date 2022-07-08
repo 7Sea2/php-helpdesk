@@ -32,7 +32,7 @@
 
         </div>
         <div class="main_content">
-            <div class="header">Welcome!</div>
+            <div class="header">Error!</div>
             <div class="info">
                 <div>
                     unauthorized user
