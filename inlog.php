@@ -1,5 +1,5 @@
 <?php
-Include 'env.php';
+Include 'config.php';
 include 'scripts/verify_user.php';
 
 
