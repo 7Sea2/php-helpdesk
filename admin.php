@@ -70,15 +70,18 @@
                      
                   <?php
                         
-                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen WHERE statusID != 5 ORDER BY prioID";
+                        $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID, userID FROM meldingen WHERE statusID != 5 ORDER BY prioID";
                         $sql2 = "SELECT * FROM status";
                         $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
+                        $sql4 = "SELECT userID, naam FROM users";
+                        $result4 = $conn->query($sql4);
                         $result3 = $conn->query($sql3);
                         $result2 = $conn->query($sql2);
                         $result = $conn->query($sql1);
 
                         $prio_arr = [];
                         $stat_arr = [];
+                        $user_arr = [];
 
                         while($row = $result3->fetch_assoc())
                         {
@@ -88,6 +91,11 @@
                         while($row = $result2->fetch_assoc())
                         {
                             $stat_arr[] = $row;
+                        }
+
+                        while($row = $result4->fetch_assoc())
+                        {
+                            $user_arr[] = $row;
                         }
 
                         while($row = $result->fetch_assoc()) {
@@ -114,8 +122,16 @@
                             $mid = $row["meldingID"];
 
                           echo "<tr>";
-                          echo "<td>" .$current_user["naam"]."<br>  </td>"; 
-                          echo "<td>" .$row["beschr_kort"]."<br>  </td>"; 
+                          echo "<td>";
+                          foreach($user_arr as $user_row)
+                          {
+                            if ($row['userID'] == $user_row['userID'])
+                            {
+                                echo $user_row["naam"];
+                                break;
+                            }
+                          }
+                          echo "<br></td><td>" .$row["beschr_kort"]."<br>  </td>"; 
                           echo "<td>" .$row["meldingID"]."<br> </td>";
                           echo "<td><form action='admin.php' method='get'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='stat' onchange='this.form.submit()'>";
                           foreach($stat_arr as $stat_row)
@@ -160,7 +176,7 @@
                     <?php
 
 
-                    $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID FROM meldingen WHERE statusID = 5";
+                    $sql1 = "SELECT meldingID, statusID, beschr_kort, datum, prioID, userID FROM meldingen WHERE statusID = 5";
                     $sql3 = "SELECT prioID, prioriteit FROM prioriteit";
                     // $sql4 = "SELECT naam FROM users WHERE userID = ".$current_user['userID'];
                     // $result4 = $conn->query($sql4);
@@ -190,8 +206,16 @@
                         }
                         $mid = $row["meldingID"];
                         echo "<tr>";
-                        echo "<td>" . $current_user["naam"] . "<br>  </td>";
-                        echo "<td>" . $row["beschr_kort"] . "<br>  </td>";
+                        echo "<td>";
+                        foreach($user_arr as $user_row)
+                        {
+                          if ($row['userID'] == $user_row['userID'])
+                          {
+                              echo $user_row["naam"];
+                              break;
+                          }
+                        }
+                        echo "<br></td><td>" . $row["beschr_kort"] . "<br>  </td>";
                         echo "<td>" . $row["meldingID"] . "<br> </td><td>";
                         foreach($stat_arr as $stat_row)
                         {
