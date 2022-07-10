@@ -42,12 +42,24 @@
 		   }
 	}
 
-	function need_admin($user)
+	function need_admin()
 	{
 		need_login();
+		$user = $GLOBALS['current_user'];
 		if ($user['rollID'] != '1')
 		{
 			header("location: unauthorized_admin.php");
+			die();
+		}
+	}
+
+	function need_user($userID)
+	{
+		need_login();
+		$c_user = $GLOBALS['current_user'];
+		if ($c_user['userID'] != $userID)
+		{
+			header("location: unauthorized_user.php");
 			die();
 		}
 	}

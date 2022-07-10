@@ -35,7 +35,7 @@
             <div class="header">Error!</div>
             <div class="info">
                 <div>
-                    unauthorized admin
+                    unauthorized user
                 </div>
             </div>
         </div>

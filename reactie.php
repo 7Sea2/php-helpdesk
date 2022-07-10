@@ -12,6 +12,9 @@
     <?php 
      include 'config.php';
      include 'scripts/verify_user.php';
+
+
+     
      if($_SERVER["REQUEST_METHOD"] == "GET"){
      $meldingID = $_GET["meldingid"];
      }  
@@ -26,7 +29,16 @@
         VALUES ('$meldingID', '$userID', '$reactie', '$datum')";
         $insertresult = $conn->query($insertquery);
     }
-    
+
+    if($current_user['rollID'] != 1)
+    {
+        $messQuery = $conn->query("SELECT userID FROM meldingen WHERE meldingID = ".$meldingID);
+        while($row = $messQuery->fetch_assoc())
+        {
+            $messID = $row['userID'];
+        }
+        need_user($messID);
+    }
     ?>
 </head>
 
