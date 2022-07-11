@@ -40,22 +40,20 @@ include 'scripts/verify_user.php';
             <div class="header">Welcome!</div>
             <div class="info">
                 <div>
-                    
+                    <?php
+                        if (isset($_SESSION['alertMess']))
+                        {
+                            echo "<div class='alert alert-".$_SESSION['alertCol']."' role='alert'>
+                                ".$_SESSION['alertMess']."
+                            </div>";
+                            unset($_SESSION['alertMess']);
+                            unset($_SESSION['alertCol']);
+                        }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
-
-</body>
-                <?php
-                if ($_SESSION['loggedin']) {
-                    echo "logged in succesfully";
-                } else {
-                    header("location: indexLoggedout.php");
-                    echo "logout failed";
-                }
-                ?>
-            </div>
 
 </body>
 

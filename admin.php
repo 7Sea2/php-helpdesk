@@ -3,21 +3,21 @@
     Include 'scripts/verify_user.php';
     need_admin($current_user);
 
-    if (isset($_GET['archive']))
+    if (isset($_POST['archive']))
     {
-        $conn->query("UPDATE meldingen SET statusID=5 WHERE meldingID = ".$_GET['archive']);
+        $conn->query("UPDATE meldingen SET statusID=5 WHERE meldingID = ".$_POST['archive']);
     }
-    if (isset($_GET['stat']))
+    if (isset($_POST['stat']))
     {
-        $conn->query("UPDATE meldingen SET statusID=".$_GET['stat']." WHERE meldingID = ".$_GET['messID']);
+        $conn->query("UPDATE meldingen SET statusID=".$_POST['stat']." WHERE meldingID = ".$_POST['messID']);
     }
-    if (isset($_GET['prio']))
+    if (isset($_POST['prio']))
     {
-        $conn->query("UPDATE meldingen SET prioID=".$_GET['prio']." WHERE meldingID = ".$_GET['messID']);
+        $conn->query("UPDATE meldingen SET prioID=".$_POST['prio']." WHERE meldingID = ".$_POST['messID']);
     }
-    if (isset($_GET['revive']))
+    if (isset($_POST['revive']))
     {
-        $conn->query("UPDATE meldingen SET statusID = 2 WHERE meldingID = ".$_GET['revive']);
+        $conn->query("UPDATE meldingen SET statusID = 2 WHERE meldingID = ".$_POST['revive']);
     }
 ?>
 
@@ -132,7 +132,7 @@
                           }
                           echo "<br></td><td>" .$row["beschr_kort"]."<br>  </td>"; 
                           echo "<td>" .$row["meldingID"]."<br> </td>";
-                          echo "<td><form action='admin.php' method='get'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='stat' onchange='this.form.submit()'>";
+                          echo "<td><form action='admin.php' method='post'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='stat' onchange='this.form.submit()'>";
                           foreach($stat_arr as $stat_row)
                           {
                             $default = "";
@@ -140,7 +140,7 @@
                             echo "<option value='".$stat_row['statusID']."' ".$default."'>".$stat_row['status']."</option>";
                           }
                           echo "</select> <i class='fas fa-circle' style='color: ".$color."'></form></i></td>";
-                          echo "<td><form action='admin.php' method='get'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='prio' onchange='this.form.submit()'>";
+                          echo "<td><form action='admin.php' method='post'><input type='hidden' name='messID' value='".$row["meldingID"]."'><select name='prio' onchange='this.form.submit()'>";
                           foreach($prio_arr as $prio_row)
                           {
                             $default = "";
@@ -149,8 +149,8 @@
                           }
                           echo "</select></form></td>";
                           echo "<td>" .$row["datum"]."<br> </td>";
-                          echo "<td><form action='reactie.php' method='gey'><input type='hidden' name='meldingid' value='".$row["meldingID"]."'><button type='submit' class='btn btn-primary'>zie melding</button></form>";
-                          echo "</td><td><form action='admin.php' method='get'><input type='hidden' name='archive' value='".$row["meldingID"]."'><button type='submit' class='btn btn-warning'>archiveren</button></form> <br> </td>";
+                          echo "<td><form action='reactie.php' method='get'><input type='hidden' name='meldingid' value='".$row["meldingID"]."'><button type='submit' class='btn btn-primary'>zie melding</button></form>";
+                          echo "</td><td><form action='admin.php' method='post'><input type='hidden' name='archive' value='".$row["meldingID"]."'><button type='submit' class='btn btn-warning'>archiveren</button></form> <br> </td>";
                           echo "</tr>";
                         } 
 
@@ -216,7 +216,7 @@
                             }
                         }
                         echo "<br></td><td>" . $row["datum"] . "<br> </td>";
-                        echo "<td><form action='admin.php' method='get'><input type='hidden' name='revive' value='".$row["meldingID"]."'><button class='btn btn-warning' type='submit'>zet terug</button></form> <br> </td>";
+                        echo "<td><form action='admin.php' method='post'><input type='hidden' name='revive' value='".$row["meldingID"]."'><button class='btn btn-warning' type='submit'>zet terug</button></form> <br> </td>";
                         echo "</tr>";
                     }
 

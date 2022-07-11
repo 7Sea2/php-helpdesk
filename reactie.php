@@ -13,14 +13,10 @@
      include 'config.php';
      include 'scripts/verify_user.php';
 
-
-     
-     if($_SERVER["REQUEST_METHOD"] == "GET"){
      $meldingID = $_GET["meldingid"];
-     }  
+
+
      if($_SERVER["REQUEST_METHOD"] == "POST"){
-       
-        $meldingID = $_POST['meldingID'];
         $userID = $current_user['userID'];
         $reactie = $_POST['reactie'];
         $datum = date('Y-m-d H:i:s');
@@ -30,15 +26,13 @@
         $insertresult = $conn->query($insertquery);
     }
 
-    if($current_user['rollID'] != 1)
+    $messQuery = $conn->query("SELECT userID FROM meldingen WHERE meldingID = ".$meldingID);
+    while($row = $messQuery->fetch_assoc())
     {
-        $messQuery = $conn->query("SELECT userID FROM meldingen WHERE meldingID = ".$meldingID);
-        while($row = $messQuery->fetch_assoc())
-        {
-            $messID = $row['userID'];
-        }
-        need_user($messID);
+        $messID = $row['userID'];
     }
+
+    need_user($messID, true);
     ?>
 </head>
 
@@ -109,11 +103,10 @@
                  ?>
                 </div>
             </div>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="POST">
+            <form action="<?php echo get_url();?>"  method="POST">
 
                         <label>Reageer</label>
                         <input type="text" name="reactie" class="form-label"/>
-                        <input type = hidden name="meldingID" value= "<?php echo $meldingID ?>">
                         
                         <button type="submit" value="Submit" class="btn btn-primary" style="background-color: #3597e7">Post</button> 
                     </form>  

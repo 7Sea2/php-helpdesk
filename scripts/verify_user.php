@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	if (!isset($_SESSION['loggedin']))
 	{
 		$_SESSION["loggedin"] = false;
@@ -48,18 +47,19 @@
 		$user = $GLOBALS['current_user'];
 		if ($user['rollID'] != '1')
 		{
-			header("location: unauthorized_admin.php");
+			alert('unauthorized admin', 'warning');
 			die();
 		}
 	}
 
-	function need_user($userID)
+	function need_user($userID, $allowAdmin = false)
 	{
 		need_login();
 		$c_user = $GLOBALS['current_user'];
+		if ($allowAdmin && ($c_user['rollID'] == 1)) return;
 		if ($c_user['userID'] != $userID)
 		{
-			header("location: unauthorized_user.php");
+			alert('unauthorized user', 'warning');
 			die();
 		}
 	}
